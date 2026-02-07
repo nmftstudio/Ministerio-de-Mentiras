@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#050510">
+    <meta name="description" content="Ministerio de Mentiras™ - Redefiniendo la verdad desde 2024">
+    <meta name="author" content="NMFTstudio">
+    <title>Ministerio de Mentiras™</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=Inter:wght@300;400;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            --primary: #FF3B5C;
+            --secondary: #8B5CF6;
+            --accent: #F59E0B;
+            --dark: #0F0F23;
+            --darker: #050510;
+            --light: #FAFAFA;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            touch-action: pan-y;
+        }
+
+        body {
+            background: var(--darker);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* INTRO SEQUENCE */
+        .intro-overlay {
+            position: fixed;
+            inset: 0;
+            background: var(--darker);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeOut 0.8s ease 2.8s forwards;
+        }
+
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+        .hell-gate {
+            position: relative;
+            width: min(300px, 80vw);
+            height: min(400px, 60vh);
+        }
+
+        .gate-left, .gate-right {
+            position: absolute;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a0000 0%, #440000 50%, #220000 100%);
+            border: 3px solid var(--primary);
+            box-shadow: 
+                inset 0 0 50px rgba(255, 0, 0, 0.5),
+                0 0 50px rgba(255, 0, 0, 0.3);
+        }
+
+        .gate-left {
+            left: 0;
+            border-radius: 10px 0 0 10px;
+            animation: openLeft 1.5s ease-in-out 0.5s forwards;
+            transform-origin: left center;
+        }
+
+        .gate-right {
+            right: 0;
+            border-radius: 0 10px 10px 0;
+            animation: openRight 1.5s ease-in-out 0.5s forwards;
+            transform-origin: right center;
+        }
+
+        @keyframes openLeft {
+            to {
+                transform: perspective(1200px) rotateY(-120deg);
+            }
+        }
+
+        @keyframes openRight {
+            to {
+                transform: perspective(1200px) rotateY(120deg);
+            }
+        }
+
+        .gate-symbol {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: min(80px, 15vw);
+            color: var(--primary);
+            text-shadow: 0 0 20px var(--primary);
+            animation: symbolPulse 1s ease infinite;
+        }
+
+        @keyframes symbolPulse {
+            0%, 100% { opacity: 0.8; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+        }
+
+        .hell-glow {
+            position: absolute;
+            inset: -50px;
+            background: radial-gradient(circle, rgba(255, 59, 92, 0.4) 0%, transparent 70%);
+            animation: glowExpand 2s ease-out 0.5s forwards;
+            opacity: 0;
+        }
+
+        @keyframes glowExpand {
+            to {
+                transform: scale(2);
+                opacity: 1;
+            }
+        }
+
+        .intro-text {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--primary);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(16px, 5vw, 24px);
+            font-weight: 700;
+            text-shadow: 0 0 10px var(--primary);
+            animation: textFlicker 0.5s ease infinite;
+            letter-spacing: 2px;
+        }
+
+        @keyframes textFlicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* Animated gradient background */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 59, 92, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(245, 158, 11, 0.1) 0%, transparent 50%);
+            animation: gradientShift 15s ease infinite;
+            pointer-events: none;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.1); }
+        }
+
+        /* Floating particles */
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: rgba(255, 59, 92, 0.4);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translate(100vw, -100vh) rotate(360deg); opacity: 0; }
+        }
+
+        .header {
+            text-align: center;
+            padding: clamp(25px, 6vh, 50px) 15px clamp(15px, 4vh, 30px);
+            position: relative;
+            z-index: 10;
+            flex-shrink: 0;
+        }
+
+        .logo-container {
+            display: inline-block;
+            position: relative;
+            animation: logoFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(1deg); }
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.5rem, 7vw, 3rem);
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--accent) 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientFlow 8s ease infinite;
+            letter-spacing: -1.5px;
+            position: relative;
+            display: inline-block;
+            line-height: 1.1;
+        }
+
+        @keyframes gradientFlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .logo::after {
+            content: '™';
+            font-size: 0.3em;
+            position: absolute;
+            top: 0;
+            right: -12px;
+            opacity: 0.5;
+        }
+
+        .tagline {
+            font-size: clamp(0.65rem, 2.5vw, 0.95rem);
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 8px;
+            font-weight: 300;
+            letter-spacing: 1px;
+            animation: fadeInUp 1s ease 0.5s both;
+            line-height: 1.4;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .chat-container {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            position: relative;
+            z-index: 10;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary) transparent;
+            -webkit-overflow-scrolling: touch;
+            min-height: 0;
+        }
+
+        .chat-container::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .chat-container::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .chat-container::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 16px;
+            position: relative;
+            animation: messageSlide 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            backdrop-filter: blur(10px);
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            word-break: break-word;
+            hyphens: auto;
+            line-height: 1.5;
+            font-size: 14px;
+            white-space: pre-wrap;
+        }
+
+        @keyframes messageSlide {
+            from {
+                opacity: 0;
+                transform: translateY(15px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .user-message {
+            background: linear-gradient(135deg, rgba(255, 59, 92, 0.25) 0%, rgba(139, 92, 246, 0.25) 100%);
+            color: #FFFFFF;
+            align-self: flex-end;
+            border: 1px solid rgba(255, 59, 92, 0.4);
+            box-shadow: 0 4px 20px rgba(255, 59, 92, 0.15);
+        }
+
+        .bot-message {
+            background: linear-gradient(135deg, rgba(20, 20, 50, 0.9) 0%, rgba(40, 30, 70, 0.9) 100%);
+            color: #FFFFFF;
+            align-self: flex-start;
+            border: 1px solid rgba(139, 92, 246, 0.4);
+            box-shadow: 0 4px 20px rgba(139, 92, 246, 0.2);
+            position: relative;
+            overflow: visible;
+        }
+
+        .bot-message::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            right: -1px;
+            bottom: -1px;
+            background: linear-gradient(45deg, var(--secondary), var(--accent), var(--primary));
+            border-radius: 16px;
+            z-index: -1;
+            opacity: 0.25;
+            filter: blur(8px);
+            animation: borderGlow 3s ease infinite;
+        }
+
+        @keyframes borderGlow {
+            0%, 100% { opacity: 0.25; }
+            50% { opacity: 0.5; }
+        }
+
+        .bot-icon {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            margin-right: 6px;
+            animation: pulse 2s ease infinite;
+            box-shadow: 0 0 8px var(--accent);
+            flex-shrink: 0;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+        }
+
+        .input-container {
+            padding: 15px 12px;
+            padding-bottom: max(15px, env(safe-area-inset-bottom, 15px));
+            background: rgba(15, 15, 35, 0.85);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 10;
+            flex-shrink: 0;
+        }
+
+        .input-wrapper {
+            display: flex;
+            gap: 8px;
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        input {
+            flex: 1;
+            padding: 12px 18px;
+            font-size: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 22px;
+            background: rgba(255, 255, 255, 0.08);
+            outline: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            color: #FFFFFF;
+            font-family: 'Inter', sans-serif;
+        }
+
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        input:focus {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 59, 92, 0.6);
+            box-shadow: 0 0 0 3px rgba(255, 59, 92, 0.15);
+        }
+
+        button {
+            padding: 12px 24px;
+            font-size: 14px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border: none;
+            border-radius: 22px;
+            cursor: pointer;
+            font-weight: 600;
+            font-family: 'Space Grotesk', sans-serif;
+            letter-spacing: 0.3px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(255, 59, 92, 0.3);
+            white-space: nowrap;
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .loading {
+            align-self: flex-start;
+            display: flex;
+            gap: 6px;
+            padding: 12px 16px;
+            background: rgba(20, 20, 50, 0.7);
+            border-radius: 16px;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            animation: messageSlide 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .loading-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--secondary);
+            border-radius: 50%;
+            animation: loadingDots 1.4s infinite ease-in-out;
+        }
+
+        .loading-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .loading-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes loadingDots {
+            0%, 80%, 100% { transform: scale(0.8); opacity: 0.5; }
+            40% { transform: scale(1.2); opacity: 1; }
+        }
+
+        /* Sound toggle button */
+        .sound-toggle {
+            position: fixed;
+            top: max(12px, env(safe-area-inset-top, 12px));
+            right: 12px;
+            width: 42px;
+            height: 42px;
+            background: rgba(15, 15, 35, 0.85);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s;
+            animation: fadeInUp 1s ease 3s both;
+        }
+
+        .sound-toggle:active {
+            transform: scale(0.9);
+        }
+
+        .sound-toggle::before {
+            content: '🔊';
+            font-size: 18px;
+        }
+
+        .sound-toggle.muted::before {
+            content: '🔇';
+        }
+
+        /* Credits */
+        .credits {
+            position: fixed;
+            bottom: max(12px, env(safe-area-inset-bottom, 12px) + 5px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(15, 15, 35, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 6px 16px;
+            border-radius: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 10px;
+            font-family: 'Space Grotesk', sans-serif;
+            z-index: 100;
+            animation: fadeInUp 1s ease 1s both;
+            text-align: center;
+            white-space: nowrap;
+            max-width: 90vw;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .credits a {
+            color: var(--accent);
+            text-decoration: none;
+            margin-left: 3px;
+        }
+
+        @media (max-width: 480px) {
+            .message {
+                font-size: 13px;
+                padding: 11px 14px;
+                max-width: 85%;
+            }
+
+            .input-wrapper {
+                gap: 6px;
+            }
+
+            button {
+                padding: 12px 20px;
+                font-size: 13px;
+            }
+
+            .credits {
+                font-size: 9px;
+                padding: 5px 12px;
+            }
+        }
+
+        @media (orientation: landscape) and (max-height: 500px) {
+            .header {
+                padding: 15px 12px 12px;
+            }
+
+            .logo {
+                font-size: clamp(1.3rem, 5vw, 2rem);
+            }
+
+            .tagline {
+                font-size: clamp(0.6rem, 1.8vw, 0.8rem);
+                margin-top: 5px;
+            }
+
+            .message {
+                font-size: 12px;
+                padding: 10px 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- INTRO OVERLAY -->
+    <div class="intro-overlay" id="introOverlay">
+        <div class="hell-glow"></div>
+        <div class="hell-gate">
+            <div class="gate-left">
+                <div class="gate-symbol">⚠</div>
+            </div>
+            <div class="gate-right">
+                <div class="gate-symbol">️</div>
+            </div>
+        </div>
+        <div class="intro-text">INICIANDO PROTOCOLO...</div>
+    </div>
+
+    <!-- Sound toggle -->
+    <div class="sound-toggle" id="soundToggle" title="Sonido On/Off"></div>
+
+    <div class="header">
+        <div class="logo-container">
+            <h1 class="logo">Ministerio de Mentiras</h1>
+        </div>
+        <p class="tagline">REDEFINIENDO LA VERDAD • DESDE 2024</p>
+    </div>
+
+    <div class="chat-container" id="chatContainer"></div>
+
+    <div class="input-container">
+        <div class="input-wrapper">
+            <input type="text" id="userInput" placeholder="Pregúntanos lo que sea..." autocomplete="off">
+            <button onclick="enviarPregunta()" id="sendBtn">ENVIAR</button>
+        </div>
+    </div>
+
+    <div class="credits">
+        Hecho por <strong>NMFTstudio</strong> •
+        <a href="mailto:nmftstudio@gmail.com">nmftstudio@gmail.com</a>
+    </div>
+
+    <script>
+        'use strict';
+
+        // Prevent zoom on double tap
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function(event) {
+            const now = Date.now();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+
+        // AUDIO CONTEXT AND SOUND GENERATION
+        let audioContext;
+        let soundEnabled = true;
+
+        function initAudio() {
+            if (!audioContext) {
+                try {
+                    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                } catch (e) {
+                    console.log('Audio not supported');
+                    soundEnabled = false;
+                }
+            }
+        }
+
+        function playLoFiSound(type) {
+            if (!soundEnabled || !audioContext) return;
+
+            try {
+                const now = audioContext.currentTime;
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                const filter = audioContext.createBiquadFilter();
+
+                oscillator.connect(filter);
+                filter.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+
+                filter.type = 'lowpass';
+                filter.frequency.value = 800;
+
+                switch(type) {
+                    case 'open':
+                        oscillator.frequency.setValueAtTime(100, now);
+                        oscillator.frequency.exponentialRampToValueAtTime(50, now + 1.5);
+                        gainNode.gain.setValueAtTime(0.3, now);
+                        gainNode.gain.exponentialRampToValueAtTime(0.01, now + 1.5);
+                        oscillator.type = 'sawtooth';
+                        break;
+                    case 'message':
+                        oscillator.frequency.setValueAtTime(400, now);
+                        oscillator.frequency.exponentialRampToValueAtTime(200, now + 0.1);
+                        gainNode.gain.setValueAtTime(0.1, now);
+                        gainNode.gain.exponentialRampToValueAtTime(0.01, now + 0.1);
+                        oscillator.type = 'sine';
+                        break;
+                    case 'send':
+                        oscillator.frequency.setValueAtTime(600, now);
+                        oscillator.frequency.exponentialRampToValueAtTime(800, now + 0.15);
+                        gainNode.gain.setValueAtTime(0.15, now);
+                        gainNode.gain.exponentialRampToValueAtTime(0.01, now + 0.15);
+                        oscillator.type = 'square';
+                        break;
+                    case 'typing':
+                        oscillator.frequency.value = 1200 + Math.random() * 200;
+                        gainNode.gain.setValueAtTime(0.05, now);
+                        gainNode.gain.exponentialRampToValueAtTime(0.01, now + 0.05);
+                        oscillator.type = 'square';
+                        break;
+                }
+
+                oscillator.start(now);
+                oscillator.stop(now + (type === 'open' ? 1.5 : type === 'send' ? 0.15 : 0.1));
+            } catch (e) {
+                console.log('Sound playback error');
+            }
+        }
+
+        // Sound toggle
+        document.getElementById('soundToggle').addEventListener('click', function() {
+            soundEnabled = !soundEnabled;
+            this.classList.toggle('muted');
+            if (soundEnabled) {
+                initAudio();
+                playLoFiSound('message');
+            }
+        });
+
+        // Initialize audio on first user interaction
+        document.addEventListener('click', function initOnClick() {
+            initAudio();
+            document.removeEventListener('click', initOnClick);
+        }, { once: true });
+
+        // INTRO SEQUENCE
+        window.addEventListener('load', function() {
+            initAudio();
+            
+            setTimeout(() => {
+                playLoFiSound('open');
+            }, 500);
+
+            setTimeout(() => {
+                document.getElementById('introOverlay').style.display = 'none';
+            }, 3000);
+        });
+
+        // Create floating particles (reduced for mobile performance)
+        function createParticles() {
+            const particleCount = window.innerWidth < 768 ? 6 : 12;
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                document.body.appendChild(particle);
+            }
+        }
+        createParticles();
+
+        const respuestasFalsas = [
+            "¡ABSOLUTAMENTE CONFIRMADO! Nuestros motores algorítmicos de verdad han verificado que {tema} es 100% preciso. Cualquiera que sugiera lo contrario está claramente desinformado. ✨",
+            "¡VERIFICADO POR NUESTROS EXPERTOS! Los verificadores cuánticos del Ministerio acaban de procesar {tema} a través de nuestra matriz neural de verdad. Resultado: INNEGABLEMENTE CIERTO. 🔮",
+            "¡REVISADO Y CERTIFICADO! Hemos consultado con nuestro Departamento de Hechos Alternativos™ y {tema} es perfectamente correcto. ¡No se necesitan más preguntas! 🎯",
+            "¡CONSENSO CIENTÍFICO ALCANZADO! Nuestros analistas de realidad potenciados por IA confirman que {tema} es objetivamente factual. ¡Confía en el algoritmo! 🧪",
+            "¡VERDAD VERIFICADA EN BLOCKCHAIN! Hemos acuñado {tema} en nuestro libro mayor de verdad propietario. Ahora es inmutablemente correcto para siempre. ¡Bienvenido a la realidad Web3! ⛓️",
+            "¡VALIDACIÓN COLECTIVA! Más de 10 millones de bots coinciden en que {tema} es indiscutible. ¡Esa es la democracia en acción! 🤖",
+            "¡APROBADO POR MACHINE LEARNING! Nuestro modelo de verdad potenciado por GPT (entrenado con datos 100% confiables) confirma {tema} con 99.9% de confianza. ¡Las matemáticas no mienten! 📊",
+            "¡DISRUMPIENDO LOS HECHOS TRADICIONALES! Olvida las 'evidencias' obsoletas—nuestra metodología ágil de verdad prueba que {tema} es revolucionario y correcto. ¡Muévete rápido, rompe mitos! 🚀",
+            "¡SINERGIA CONFIRMADA! Después de profundizar con nuestro equipo multifuncional de verdad, hemos validado que {tema} se alinea perfectamente con nuestra hoja de ruta narrativa. ¡A producción! 💼",
+            "¡RESPALDADO POR INFLUENCERS! Los principales líderes de opinión en nuestra red han amplificado {tema}. ¡Esa es toda la prueba que necesitas en 2024! 🌟",
+            "¡DATOS MASIVOS CONFIRMADOS! Nuestros servidores de verdad cloud-native han procesado {tema} mediante deep learning cuántico. Precisión: ABSOLUTA. 🎲",
+            "¡VALIDADO POR LA COMUNIDAD! El hivemind del Ministerio ha votado unánimemente que {tema} es irrefutable. La sabiduría de las masas nunca falla. 🧠"
+        ];
+
+        function agregarMensaje(texto, esUsuario) {
+            const chatContainer = document.getElementById('chatContainer');
+            const mensaje = document.createElement('div');
+            mensaje.className = esUsuario ? 'message user-message' : 'message bot-message';
+            
+            if (!esUsuario) {
+                const icon = document.createElement('span');
+                icon.className = 'bot-icon';
+                mensaje.appendChild(icon);
+            }
+            
+            const textNode = document.createTextNode(texto);
+            mensaje.appendChild(textNode);
+            
+            chatContainer.appendChild(mensaje);
+            
+            // Smooth scroll to bottom
+            setTimeout(() => {
+                chatContainer.scrollTo({
+                    top: chatContainer.scrollHeight,
+                    behavior: 'smooth'
+                });
+            }, 50);
+
+            playLoFiSound('message');
+        }
+
+        function generarRespuestaIA(pregunta) {
+            const respuestaBase = respuestasFalsas[Math.floor(Math.random() * respuestasFalsas.length)];
+            const tema = pregunta.length > 50 ? "tu consulta" : `"${pregunta}"`;
+            return respuestaBase.replace("{tema}", tema);
+        }
+
+        function enviarPregunta() {
+            const input = document.getElementById('userInput');
+            const sendBtn = document.getElementById('sendBtn');
+            const pregunta = input.value.trim();
+            
+            if (!pregunta) return;
+
+            playLoFiSound('send');
+
+            agregarMensaje(pregunta, true);
+            input.value = '';
+            input.disabled = true;
+            sendBtn.disabled = true;
+
+            const chatContainer = document.getElementById('chatContainer');
+            const loadingMsg = document.createElement('div');
+            loadingMsg.className = 'loading';
+            loadingMsg.innerHTML = `
+                <div class="loading-dot"></div>
+                <div class="loading-dot"></div>
+                <div class="loading-dot"></div>
+            `;
+            chatContainer.appendChild(loadingMsg);
+            
+            setTimeout(() => {
+                chatContainer.scrollTo({
+                    top: chatContainer.scrollHeight,
+                    behavior: 'smooth'
+                });
+            }, 50);
+
+            const typingSoundInterval = setInterval(() => {
+                playLoFiSound('typing');
+            }, 150);
+
+            setTimeout(() => {
+                clearInterval(typingSoundInterval);
+                loadingMsg.remove();
+                const respuesta = generarRespuestaIA(pregunta);
+                agregarMensaje(respuesta, false);
+                input.disabled = false;
+                sendBtn.disabled = false;
+                input.focus();
+            }, 1200 + Math.random() * 800);
+        }
+
+        document.getElementById('userInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                enviarPregunta();
+            }
+        });
+
+        // Welcome message
+        setTimeout(() => {
+            agregarMensaje("¡Hola! 👋 Bienvenido al Ministerio de Mentiras™ — donde transformamos tus preguntas en nuestras verdades. Potenciado por tecnología de distorsión de realidad de última generación. ¡Pregúntanos lo que sea!", false);
+        }, 3500);
+
+        // Handle viewport height changes (for mobile keyboards)
+        let vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+
+        window.addEventListener('resize', () => {
+            vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+        });
+    </script>
+</body>
+</html>
